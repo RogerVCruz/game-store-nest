@@ -6,6 +6,7 @@ import {
   HttpCode,
   HttpStatus,
   Param,
+  ParseFloatPipe,
   ParseIntPipe,
   Post,
   Put,
@@ -33,6 +34,22 @@ export class ProdutoController {
   @HttpCode(HttpStatus.OK)
   findByNome(@Param('nome') nome: string): Promise<Produto[]> {
     return this.produtoService.findByNome(nome);
+  }
+
+  @Get('/maior/:preco')
+  @HttpCode(HttpStatus.OK)
+  findByPrecoMaior(
+    @Param('preco', ParseFloatPipe) preco: number,
+  ): Promise<Produto[]> {
+    return this.produtoService.findByPrecoMaior(preco);
+  }
+
+  @Get('/menor/:preco')
+  @HttpCode(HttpStatus.OK)
+  findByPrecoMenor(
+    @Param('preco', ParseFloatPipe) preco: number,
+  ): Promise<Produto[]> {
+    return this.produtoService.findByPrecoMenor(preco);
   }
 
   @Post()
