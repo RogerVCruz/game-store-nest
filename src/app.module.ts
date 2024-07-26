@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { Produto } from './produto/entities/produto.entity';
 
 @Module({
   imports: [
@@ -10,8 +11,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       username: 'root',
       password: 'root',
       database: 'db_loja_games',
-      entities: [],
+      entities: [Produto],
       synchronize: true,
+      bigNumberStrings: false,
     }),
   ],
 })
