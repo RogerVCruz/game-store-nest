@@ -64,9 +64,9 @@ export class UsuarioService {
     const updateUsuario: Usuario = await this.findById(usuario.id);
     const buscaUsuario = await this.findByUsuario(usuario.usuario);
 
-    this.verificaIdadeUsuario(usuario.dataNascimento);
-
     usuario.dataNascimento = parseDate(usuario.dataNascimento);
+
+    this.verificaIdadeUsuario(usuario.dataNascimento);
 
     if (buscaUsuario.usuario !== usuario.usuario)
       throw new HttpException(
@@ -86,6 +86,7 @@ export class UsuarioService {
 
   verificaIdadeUsuario(dataNascimento: Date) {
     const idade = moment(Date.now()).diff(dataNascimento, 'years');
+
     if (idade < 18)
       throw new HttpException(
         'Usuário menor de idade!',

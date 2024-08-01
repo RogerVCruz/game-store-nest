@@ -1,7 +1,7 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
 import * as moment from 'moment';
 
-export default (data: any) => {
+export default (data: any): Date => {
   try {
     return moment(data, 'DD/MM/YYYY', true).toDate();
   } catch (error) {
